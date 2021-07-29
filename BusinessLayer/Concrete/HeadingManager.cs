@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +13,34 @@ namespace BusinessLayer.Concrete
     {
         IHeadingDal _headingDal;
 
-        // dependency injection
         public HeadingManager(IHeadingDal headingDal)
         {
             _headingDal = headingDal;
         }
 
-        public int HeadingCount()
+        public Heading GetByID(int id)
         {
-            throw new NotImplementedException();
+            return _headingDal.Get(x => x.HeadingID == id);
+        }
+
+        public List<Heading> GetList()
+        {
+            return _headingDal.List();
+        }
+
+        public void HeadingAdd(Heading heading)
+        {
+            _headingDal.Insert(heading);
+        }
+
+        public void HeadingDelete(Heading heading)
+        {
+            _headingDal.Delete(heading);
+        }
+
+        public void HeadingUpdate(Heading heading)
+        {
+            _headingDal.Update(heading);
         }
     }
 }
