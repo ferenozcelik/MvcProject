@@ -26,9 +26,24 @@ namespace BusinessLayer.Concrete
             _categoryDal.Insert(category);
         }
 
+        public int CategoryCount()
+        {
+            return _categoryDal.CountList();
+        }
+
+        public int CategoryCountFilter()
+        {
+            throw new NotImplementedException();
+        }
+
         public void CategoryDelete(Category category)
         {
             _categoryDal.Delete(category);
+        }
+
+        public void CategoryUpdate(Category category)
+        {
+            _categoryDal.Update(category);
         }
 
         public Category GetByID(int id)

@@ -10,10 +10,21 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete.Repositories
 {
+    /*
     public class CategoryRepository : ICategoryDal
     {
         Context context = new Context();
         DbSet<Category> _object;
+
+        public int CountList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int CountList(Expression<Func<Category, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
 
         public void Delete(Category p)
         {
@@ -47,6 +58,7 @@ namespace DataAccessLayer.Concrete.Repositories
             context.SaveChanges();
         }
     }
+    */
 }
 
 /*
