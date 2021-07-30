@@ -33,6 +33,8 @@ namespace EntityLayer.Concrete
         [StringLength(50)]
         public string WriterTitle { get; set; }
 
+        public bool WriterStatus { get; set; }
+
 
 
         // relations

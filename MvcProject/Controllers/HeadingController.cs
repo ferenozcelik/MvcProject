@@ -29,6 +29,7 @@ namespace MvcProject.Controllers
                                                       Text = x.CategoryName,
                                                       Value = x.CategoryID.ToString()
                                                   }).ToList();
+
             List<SelectListItem> valueWriter = (from x in writerManager.GetList()
                                                 select new SelectListItem
                                                 {
@@ -45,6 +46,37 @@ namespace MvcProject.Controllers
         {
             p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             headingManager.HeadingAdd(p);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult EditHeading(int id)
+        {
+            List<SelectListItem> valueCategory = (from x in categoryManager.GetList()
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.CategoryName,
+                                                      Value = x.CategoryID.ToString()
+                                                  }).ToList();
+
+            ViewBag.vlc = valueCategory;
+            var headingValue = headingManager.GetByID(id);
+            return View(headingValue);
+        }
+
+        [HttpPost]
+        public ActionResult EditHeading(Heading p)
+        {
+            headingManager.HeadingUpdate(p);
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult DeleteHeading(int id)
+        {
+            var headingValue = headingManager.GetByID(id);
+            headingValue.HeadingStatus = false;
+            headingManager.HeadingDelete(headingValue);
             return RedirectToAction("Index");
         }
     }
