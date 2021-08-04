@@ -13,6 +13,8 @@ namespace MvcProject.Controllers
     {
         ContactManager contactManager = new ContactManager(new EfContactDal());
         ContactValidator cv = new ContactValidator();
+
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var contactValues = contactManager.GetList();
