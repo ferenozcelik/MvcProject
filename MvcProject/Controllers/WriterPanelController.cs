@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcProject.Controllers
 {
@@ -84,6 +86,12 @@ namespace MvcProject.Controllers
             headingValue.HeadingStatus = false;
             headingManager.HeadingDelete(headingValue);
             return RedirectToAction("MyHeading");
+        }
+
+        public ActionResult AllHeading(int p = 1)
+        {
+            var headings = headingManager.GetList().ToPagedList(p, 4);
+            return View(headings);
         }
     }
 }
